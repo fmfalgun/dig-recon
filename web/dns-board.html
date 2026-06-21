@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DNS Board — dig-recon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">DIG-RECON</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="dns-board.html" class="nav-active">DNS Board</a>
+    <a href="https://github.com/fmfalgun/dig-recon" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <a href="https://fmfalgun.github.io" target="_blank" rel="noopener noreferrer">Portfolio ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>DNS <span>BOARD</span></h1>
+  <p class="hero-tagline">Community DNS sweeps — SPF/DMARC status · hosting · record counts · sorted A→Z</p>
+  <div class="hof-subheader">
+    <span id="db-stats">loading...</span>
+  </div>
+</section>
+
+<main>
+
+  <div id="db-disclaimer">
+    DNS data sourced from public resolvers. SPF/DMARC analysis reflects record state at query time. Results are for educational and authorized testing purposes only.
+  </div>
+
+  <div id="db-howto">
+    <code class="inline-code">python3 dig-recon.py -d yourdomain.com --submit</code>
+    <span>→ results appear here after CI processes the submission</span>
+  </div>
+
+  <div id="search-row">
+    <input type="text" id="search-input" placeholder="filter domains..." autocomplete="off" spellcheck="false">
+  </div>
+
+  <div id="domain-list">
+    <p class="empty">Loading...</p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <a href="index.html">← Home</a>
+  &nbsp;·&nbsp; DNS Board &nbsp;·&nbsp;
+  <a href="https://github.com/fmfalgun/dig-recon" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+</footer>
+
+<script src="assets/js/dns-board.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+name: Monthly Refresh
+
+on:
+  schedule:
+    - cron: '0 3 1 * *'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install dnspython
+
+      - name: Refresh active domains
+        run: |
+          python3 - <<'PYEOF'
+          import json, subprocess, datetime
+
+          index_file = 'web/data/index.json'
+          now        = datetime.datetime.utcnow()
+          cutoff     = now - datetime.timedelta(days=90)
+          nowstr     = now.strftime('%Y-%m-%dT%H:%M:%SZ')
+
+          with open(index_file) as f:
+              index = json.load(f)
+
+          active, stale = 0, 0
+          for entry in index.get('domains',[]):
+              domain = entry['domain']
+              last   = entry.get('last_refreshed', entry.get('queried_at',''))
+              try:
+                  last_dt = datetime.datetime.strptime(last[:19],'%Y-%m-%dT%H:%M:%S')
+              except:
+                  stale += 1; continue
+
+              if last_dt < cutoff:
+                  stale += 1
+                  print(f'[SKIP] {domain} — over 90 days')
+                  continue
+
+              domain_file = f'web/data/domains/{domain}.json'
+              print(f'[RUN] {domain}')
+              r = subprocess.run(
+                  ['python3','dig-recon.py','-d',domain,'-o',domain_file,'--no-cache'],
+                  capture_output=True, text=True
+              )
+              if r.returncode != 0:
+                  print(f'[WARN] {domain}: {r.stderr[:200]}')
+                  continue
+
+              with open(domain_file) as f:
+                  data = json.load(f)
+              data['display_name']   = entry.get('display_name','')
+              data['display_loc']    = entry.get('display_loc','')
+              data['last_refreshed'] = nowstr
+              with open(domain_file,'w') as f:
+                  json.dump(data, f, indent=2)
+
+              rec   = data.get('records',{})
+              spf   = data.get('spf') or {}
+              dmarc = data.get('dmarc') or {}
+              entry.update({
+                  'a_count':     len(rec.get('a',[])),
+                  'mx_count':    len(rec.get('mx',[])),
+                  'txt_count':   len(rec.get('txt',[])),
+                  'ns_count':    len(rec.get('ns',[])),
+                  'has_spf':     bool(spf.get('raw')),
+                  'has_dmarc':   bool(dmarc.get('raw')),
+                  'dmarc_policy': dmarc.get('policy'),
+                  'spoofable':   bool(data.get('email_spoofable')),
+                  'last_refreshed': nowstr,
+              })
+              active += 1
+
+          index['domains'] = sorted(index['domains'], key=lambda d: d['domain'])
+          with open(index_file,'w') as f:
+              json.dump(index, f, indent=2)
+          print(f'[DONE] refreshed={active} skipped={stale}')
+          PYEOF
+
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add web/data/
+          git diff --cached --quiet || git commit -m "data: monthly refresh [skip ci]"
+          git push

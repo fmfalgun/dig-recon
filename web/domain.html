@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domain Detail — dig-recon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">DIG-RECON</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="dns-board.html">DNS Board</a>
+    <a href="https://github.com/fmfalgun/dig-recon" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <a href="https://fmfalgun.github.io" target="_blank" rel="noopener noreferrer">Portfolio ↗</a>
+  </div>
+</nav>
+
+<div class="domain-header">
+  <span class="domain-name-display" id="domain-name-display">—</span>
+  <span class="domain-contributor" id="contributor-meta"></span>
+</div>
+
+<section id="stats-row" class="stats-row">
+  <div class="stat-badge">
+    <span class="stat-value" id="val-a-count">—</span>
+    <span class="stat-label">A Records</span>
+  </div>
+  <div class="stat-badge">
+    <span class="stat-value" id="val-mx-count">—</span>
+    <span class="stat-label">MX Records</span>
+  </div>
+  <div class="stat-badge">
+    <span class="stat-value" id="val-subdomain-count">—</span>
+    <span class="stat-label">Subdomains</span>
+  </div>
+  <div class="stat-badge">
+    <span class="stat-value" id="val-spoofable">—</span>
+    <span class="stat-label">Spoofable</span>
+  </div>
+</section>
+
+<main>
+
+  <p id="queried-at-line">data as of <span id="queried-at">—</span></p>
+
+  <div class="section" id="section-records">
+    <h2 class="section-title">DNS Records</h2>
+    <div id="records-grid"></div>
+  </div>
+
+  <div class="section" id="section-email">
+    <h2 class="section-title">Email Security</h2>
+    <div class="email-security-grid" id="email-grid"></div>
+  </div>
+
+  <div class="section" id="section-subdomains">
+    <h2 class="section-title">Subdomains</h2>
+    <div class="subdomain-list" id="subdomain-list"></div>
+  </div>
+
+  <div id="error-box" style="display:none"><span id="error-message"></span></div>
+
+</main>
+
+<footer class="site-footer">
+  <a href="dns-board.html">← DNS Board</a>
+  &nbsp;·&nbsp; dig-recon &nbsp;·&nbsp;
+  <a href="https://github.com/fmfalgun/dig-recon" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+</footer>
+
+<script src="assets/js/domain.js"></script>
+
+</body>
+</html>

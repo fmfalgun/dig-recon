@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dig-recon — Full DNS Sweep Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">DIG-RECON</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-active">Home</a>
+    <a href="dns-board.html">DNS Board</a>
+    <a href="https://github.com/fmfalgun/dig-recon" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <a href="https://fmfalgun.github.io" target="_blank" rel="noopener noreferrer">Portfolio ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>DIG <span>RECON</span></h1>
+  <p class="hero-tagline">Full DNS sweep · SPF/DMARC email security · AXFR · subdomain brute · hosting fingerprint</p>
+  <div class="install-block">python3 dig-recon.py -d target.com</div>
+  <div class="hero-cta-row">
+    <a class="cta-btn" href="dns-board.html">→ DNS Board</a>
+    <a class="cta-ghost" href="https://github.com/fmfalgun/dig-recon" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+  </div>
+</section>
+
+<div class="layout">
+
+  <aside class="info-panel">
+
+    <div class="panel-block">
+      <div class="panel-heading">&gt; WHAT IS DIG RECON</div>
+      <p class="panel-text">A full DNS sweep goes beyond <span class="inline-code">dig A domain.com</span>. dig-recon queries all critical record types (A/AAAA/NS/MX/TXT/SOA/CAA/DNSKEY), resolves DMARC via CNAME chains, attempts AXFR zone transfer against each nameserver, brutes a common subdomain wordlist, performs PTR reverse-DNS on discovered IPs, and fingerprints the hosting provider. Output is structured JSON.</p>
+    </div>
+
+    <div class="panel-block">
+      <div class="panel-heading">&gt; WHY THIS SCRIPT</div>
+      <p class="panel-text">Raw <span class="inline-code">dig</span> output is one record type at a time, unstructured text, no analysis. This script combines all queries, classifies the hosting environment, detects Cloudflare edge nodes, identifies email provider from MX patterns, evaluates SPF + DMARC spoofability, and emits a complete machine-readable result with a pentester-oriented summary.</p>
+    </div>
+
+    <div class="panel-block">
+      <div class="panel-heading">&gt; HOW IT WORKS</div>
+      <div class="arch-diagram">
+        <div class="arch-box">INPUT: --domain target.com</div>
+        <div class="arch-box">&#8595;</div>
+        <div class="arch-box">cache.db (24h TTL)</div>
+        <div class="arch-box">&#8595; (stale or --no-cache)</div>
+        <div class="arch-box">dnspython resolver</div>
+        <div class="arch-box">A · AAAA · NS · MX · TXT · SOA · CAA · DNSKEY</div>
+        <div class="arch-box">_dmarc TXT (CNAME chain)</div>
+        <div class="arch-box">AXFR attempts vs. each NS</div>
+        <div class="arch-box">&#8595;</div>
+        <div class="arch-box">PTR lookups · hosting fingerprint</div>
+        <div class="arch-box">Subdomain brute (common wordlist)</div>
+        <div class="arch-box">SPF + DMARC analysis</div>
+        <div class="arch-box">&#8595;</div>
+        <div class="arch-box">JSON output + terminal summary</div>
+      </div>
+    </div>
+
+  </aside>
+
+  <main class="home-main">
+
+    <div class="panel-block">
+      <div class="panel-heading">&gt; USAGE</div>
+
+      <p class="panel-text">Basic sweep:</p>
+      <pre class="code-block">python3 dig-recon.py --domain target.com
+<span class="code-comment"># queries all DNS record types, brutes subdomains, outputs JSON summary</span></pre>
+
+      <p class="panel-text">Save JSON output:</p>
+      <pre class="code-block">python3 dig-recon.py --domain target.com --output results.json
+<span class="code-comment"># writes full structured output to file in addition to terminal display</span></pre>
+
+      <p class="panel-text">Skip cache (force fresh queries):</p>
+      <pre class="code-block">python3 dig-recon.py --domain target.com --no-cache
+<span class="code-comment"># bypasses cache.db — always queries live DNS resolvers</span></pre>
+
+      <p class="panel-text">Override cache TTL:</p>
+      <pre class="code-block">python3 dig-recon.py --domain target.com --ttl 3600
+<span class="code-comment"># treat cached results older than 3600 seconds as stale</span></pre>
+
+      <p class="panel-text">Submit to DNS Board:</p>
+      <pre class="code-block">python3 dig-recon.py --domain target.com --submit
+<span class="code-comment"># opens PR / posts result to the public DNS Board index</span></pre>
+
+      <p class="panel-text">Reconfigure API / resolver settings:</p>
+      <pre class="code-block">python3 dig-recon.py --reconfigure
+<span class="code-comment"># re-runs first-time setup: resolver, output preferences, submit endpoint</span></pre>
+    </div>
+
+    <div class="panel-block">
+      <div class="panel-heading">&gt; OUTPUT SCHEMA</div>
+      <p class="panel-text">Every run emits a single JSON object. Key fields:</p>
+      <pre class="code-block">{
+  "domain": "target.com",
+  "queried_at": "2025-06-21T14:32:00Z",
+  "records": {
+    "A":      ["93.184.216.34"],
+    "AAAA":   [],
+    "NS":     ["ns1.example.com", "ns2.example.com"],
+    "MX":     [{"priority": 10, "host": "mail.target.com"}],
+    "TXT":    ["v=spf1 include:_spf.google.com ~all"],
+    "SOA":    {"mname": "ns1.target.com", "rname": "admin.target.com"},
+    "CAA":    [{"flag": 0, "tag": "issue", "value": "letsencrypt.org"}],
+    "DNSKEY": []
+  },
+  "spf": {
+    "present": true,
+    "record": "v=spf1 include:_spf.google.com ~all",
+    "mechanism": "softfail"
+  },
+  "dmarc": {
+    "present": true,
+    "record": "v=DMARC1; p=reject; pct=100; rua=mailto:dmarc@target.com",
+    "policy": "reject",
+    "pct": 100
+  },
+  "email_spoofable": false,
+  "axfr_attempted": true,
+  "axfr_success":   false,
+  "subdomains": ["www", "mail", "dev"],
+  "subdomain_count": 3,
+  "hosting_type": "cloudflare",
+  "caa_present":    true,
+  "dnssec_present": false
+}</pre>
+    </div>
+
+    <div class="panel-block">
+      <div class="panel-heading">&gt; EMAIL SPOOFABILITY</div>
+      <p class="panel-text">SPF and DMARC work together. SPF alone does not prevent spoofing of the <span class="inline-code">From:</span> header visible to recipients — that requires DMARC alignment.</p>
+      <ul class="panel-list">
+        <li><span class="inline-code">No SPF + No DMARC</span> — fully open. Any MTA can send mail as this domain. Trivially spoofable.</li>
+        <li><span class="inline-code">SPF present, No DMARC</span> — SPF validates the envelope sender but the visible From header is unprotected. Still spoofable at the header level.</li>
+        <li><span class="inline-code">DMARC p=none</span> — monitoring only. Reports are sent but no enforcement action is taken. Spoofing succeeds in all mail clients.</li>
+        <li><span class="inline-code">DMARC p=quarantine</span> — spoofed mail is sent to spam. Partial protection depending on recipient mail server compliance.</li>
+        <li><span class="inline-code">DMARC p=reject pct=100</span> — fully protected. Compliant MTAs reject spoofed messages outright.</li>
+      </ul>
+      <p class="panel-text">Common pentest finding: domains with no DMARC record are trivially spoofable regardless of SPF configuration. dig-recon flags <span class="inline-code">email_spoofable: true</span> whenever the combination of SPF + DMARC leaves the domain open to header-From spoofing.</p>
+    </div>
+
+    <div class="hof-cta-card">
+      <div class="hof-cta-label">[ // DNS BOARD ]</div>
+      <p class="hof-cta-desc">Every domain queried with --submit is indexed here. Browse community DNS sweeps — SPF/DMARC status, hosting, record counts — no tool required.</p>
+      <a class="cta-btn" href="dns-board.html">→ Open DNS Board</a>
+    </div>
+
+  </main>
+
+</div>
+
+<footer class="site-footer">
+  Built by Falgun Marothia &nbsp;·&nbsp; data from public DNS &nbsp;·&nbsp;
+  <a href="https://github.com/fmfalgun/dig-recon" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+  &nbsp;·&nbsp;
+  <a href="dns-board.html">DNS Board</a>
+</footer>
+
+</body>
+</html>

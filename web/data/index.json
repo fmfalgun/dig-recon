@@ -1,0 +1,20 @@
+{
+  "total_domains": 1,
+  "domains": [
+    {
+      "domain": "nmap.org",
+      "display_name": "fmfalgun",
+      "display_loc": "Chennai, India",
+      "queried_at": "2026-06-21T05:00:00Z",
+      "last_refreshed": "2026-06-21T05:00:00Z",
+      "a_count": 1,
+      "mx_count": 1,
+      "txt_count": 3,
+      "ns_count": 5,
+      "has_spf": true,
+      "has_dmarc": true,
+      "dmarc_policy": "reject",
+      "spoofable": false
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "domain": "nmap.org",
+  "queried_at": "2026-06-21T05:00:00Z",
+  "cached": false,
+  "records": {
+    "a":      ["45.33.32.156"],
+    "aaaa":   [],
+    "ns":     ["ns1.linode.com", "ns2.linode.com", "ns3.linode.com", "ns4.linode.com", "ns5.linode.com"],
+    "mx":     ["10 li463-156.members.linode.com"],
+    "txt":    [
+      "v=spf1 mx -all",
+      "google-site-verification=o1jAFzF7hvMLYD3DmMGrGEHJGqBx9C0yFq_8h8P2B8o",
+      "keybase-site-verification=fhIMGNv0pIZbPBR7KrAZFXpfnCbr3s8LqnX0SKYX6Oc"
+    ],
+    "soa":    "ns1.linode.com. admin.nmap.org. 2023080401 3600 900 604800 300",
+    "caa":    [],
+    "dnskey": false
+  },
+  "spf": {
+    "raw":      "v=spf1 mx -all",
+    "all":      "-all",
+    "includes": [],
+    "ip4":      [],
+    "ip6":      [],
+    "a":        false,
+    "mx":       true
+  },
+  "dmarc": {
+    "raw":              "v=DMARC1; p=reject; rua=mailto:dmarc-reports@nmap.org; pct=100",
+    "policy":           "reject",
+    "subdomain_policy": null,
+    "pct":              100,
+    "rua":              "mailto:dmarc-reports@nmap.org",
+    "ruf":              null
+  },
+  "email_spoofable":  false,
+  "spoofable_reason": "DMARC p=reject (100%) — fully protected, spoofed mail rejected",
+  "axfr_success":     false,
+  "subdomains": [
+    {"fqdn": "scanme.nmap.org", "type": "A",     "value": "45.33.32.156",  "source": "brute"},
+    {"fqdn": "www.nmap.org",    "type": "A",     "value": "45.33.32.156",  "source": "brute"},
+    {"fqdn": "mail.nmap.org",   "type": "CNAME", "value": "li463-156.members.linode.com", "source": "brute"}
+  ],
+  "hosting_type":     "Linode/Akamai VPS",
+  "hosting_provider": "Akamai",
+  "email_provider":   "Self-hosted / Unknown",
+  "caa_present":      false,
+  "dnssec_present":   false,
+  "unique_ips":       1,
+  "subdomain_count":  3,
+  "display_name":     "fmfalgun",
+  "display_loc":      "Chennai, India",
+  "last_refreshed":   "2026-06-21T05:00:00Z"
+}
