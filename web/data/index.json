@@ -5,16 +5,16 @@
       "domain": "nmap.org",
       "display_name": "fmfalgun",
       "display_loc": "Chennai, India",
-      "queried_at": "2026-06-21T05:00:00Z",
-      "last_refreshed": "2026-06-21T05:00:00Z",
+      "queried_at": "2026-06-22T07:13:45.116379+00:00",
+      "last_refreshed": "2026-06-22T07:13:48Z",
       "a_count": 1,
-      "mx_count": 1,
-      "txt_count": 3,
+      "mx_count": 5,
+      "txt_count": 2,
       "ns_count": 5,
       "has_spf": true,
-      "has_dmarc": true,
-      "dmarc_policy": "reject",
-      "spoofable": false
+      "has_dmarc": false,
+      "dmarc_policy": null,
+      "spoofable": true
     }
   ]
 }

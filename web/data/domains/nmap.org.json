@@ -1,54 +1,320 @@
 {
   "domain": "nmap.org",
-  "queried_at": "2026-06-21T05:00:00Z",
+  "queried_at": "2026-06-22T07:13:45.116379+00:00",
   "cached": false,
   "records": {
-    "a":      ["45.33.32.156"],
-    "aaaa":   [],
-    "ns":     ["ns1.linode.com", "ns2.linode.com", "ns3.linode.com", "ns4.linode.com", "ns5.linode.com"],
-    "mx":     ["10 li463-156.members.linode.com"],
-    "txt":    [
-      "v=spf1 mx -all",
-      "google-site-verification=o1jAFzF7hvMLYD3DmMGrGEHJGqBx9C0yFq_8h8P2B8o",
-      "keybase-site-verification=fhIMGNv0pIZbPBR7KrAZFXpfnCbr3s8LqnX0SKYX6Oc"
+    "a": [
+      "50.116.1.184"
     ],
-    "soa":    "ns1.linode.com. admin.nmap.org. 2023080401 3600 900 604800 300",
-    "caa":    [],
+    "aaaa": [
+      "2600:3c01:e000:3e6::6d4e:7061"
+    ],
+    "ns": [
+      "ns5.linode.com",
+      "ns4.linode.com",
+      "ns1.linode.com",
+      "ns2.linode.com",
+      "ns3.linode.com"
+    ],
+    "mx": [
+      "10 ASPMX2.GOOGLEMAIL.COM.",
+      "1 ASPMX.L.GOOGLE.COM.",
+      "10 ASPMX3.GOOGLEMAIL.COM.",
+      "5 ALT1.ASPMX.L.GOOGLE.COM.",
+      "5 ALT2.ASPMX.L.GOOGLE.COM."
+    ],
+    "txt": [
+      "v=spf1 a mx ptr ip4:50.116.1.184 ip6:2600:3c01::f03c:91ff:fe98:ff4e ip6:2600:3c01:e000:3e6::6d4e:7061 include:_spf.google.com ~all",
+      "google-site-verification=SrtYpJGxZzMTcczZG44XtLVK-sEPit9bputDjWc0lF4"
+    ],
+    "soa": "ns1.linode.com. hostmaster.nmap.com. 2021000018 14400 14400 1209600 3600",
+    "caa": [
+      "0 issue \"letsencrypt.org\""
+    ],
     "dnskey": false
   },
   "spf": {
-    "raw":      "v=spf1 mx -all",
-    "all":      "-all",
-    "includes": [],
-    "ip4":      [],
-    "ip6":      [],
-    "a":        false,
-    "mx":       true
+    "raw": "v=spf1 a mx ptr ip4:50.116.1.184 ip6:2600:3c01::f03c:91ff:fe98:ff4e ip6:2600:3c01:e000:3e6::6d4e:7061 include:_spf.google.com ~all",
+    "all": "~all",
+    "includes": [
+      "_spf.google.com"
+    ],
+    "ip4": [
+      "50.116.1.184"
+    ],
+    "ip6": [
+      "2600:3c01::f03c:91ff:fe98:ff4e",
+      "2600:3c01:e000:3e6::6d4e:7061"
+    ],
+    "a": true,
+    "mx": true
   },
-  "dmarc": {
-    "raw":              "v=DMARC1; p=reject; rua=mailto:dmarc-reports@nmap.org; pct=100",
-    "policy":           "reject",
-    "subdomain_policy": null,
-    "pct":              100,
-    "rua":              "mailto:dmarc-reports@nmap.org",
-    "ruf":              null
-  },
-  "email_spoofable":  false,
-  "spoofable_reason": "DMARC p=reject (100%) — fully protected, spoofed mail rejected",
-  "axfr_success":     false,
+  "dmarc": null,
+  "email_spoofable": true,
+  "spoofable_reason": "No DMARC \u2014 receiving servers ignore SPF failures, fully spoofable",
+  "axfr_success": false,
   "subdomains": [
-    {"fqdn": "scanme.nmap.org", "type": "A",     "value": "45.33.32.156",  "source": "brute"},
-    {"fqdn": "www.nmap.org",    "type": "A",     "value": "45.33.32.156",  "source": "brute"},
-    {"fqdn": "mail.nmap.org",   "type": "CNAME", "value": "li463-156.members.linode.com", "source": "brute"}
+    {
+      "fqdn": "admin.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "api.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "app.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "assets.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "autodiscover.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "beta.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "blog.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "cdn.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "cpanel.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "cpcalendars.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "cpcontacts.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "dashboard.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "dev.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "direct.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "ftp.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "help.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "imap.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "img.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "login.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "lyncdiscover.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "m.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "mail.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "media.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "mobile.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "newsite.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "old.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "pop.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "portal.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "remote.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "secure.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "shop.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "smtp.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "staging.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "static.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "support.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "test.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "training.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "vpn.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "webdisk.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "webmail.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "whm.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    },
+    {
+      "fqdn": "www.nmap.org",
+      "type": "A",
+      "value": "50.116.1.184",
+      "source": "brute"
+    }
   ],
-  "hosting_type":     "Linode/Akamai VPS",
-  "hosting_provider": "Akamai",
-  "email_provider":   "Self-hosted / Unknown",
-  "caa_present":      false,
-  "dnssec_present":   false,
-  "unique_ips":       1,
-  "subdomain_count":  3,
-  "display_name":     "fmfalgun",
-  "display_loc":      "Chennai, India",
-  "last_refreshed":   "2026-06-21T05:00:00Z"
+  "hosting_type": "Unknown",
+  "hosting_provider": "Unknown",
+  "email_provider": "Google Workspace",
+  "caa_present": true,
+  "dnssec_present": false,
+  "unique_ips": 1,
+  "subdomain_count": 42,
+  "display_name": "fmfalgun",
+  "display_loc": "Chennai, India",
+  "last_refreshed": "2026-06-22T07:13:48Z"
 }
