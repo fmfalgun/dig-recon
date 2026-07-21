@@ -1,6 +1,6 @@
 {
   "domain": "nmap.org",
-  "queried_at": "2026-07-20T05:32:32.937101+00:00",
+  "queried_at": "2026-07-21T05:13:42.926195+00:00",
   "cached": false,
   "records": {
     "a": [
@@ -10,18 +10,18 @@
       "2600:3c01:e000:3e6::6d4e:7061"
     ],
     "ns": [
-      "ns3.linode.com",
-      "ns1.linode.com",
+      "ns5.linode.com",
       "ns2.linode.com",
       "ns4.linode.com",
-      "ns5.linode.com"
+      "ns1.linode.com",
+      "ns3.linode.com"
     ],
     "mx": [
-      "5 ALT1.ASPMX.L.GOOGLE.COM.",
       "10 ASPMX2.GOOGLEMAIL.COM.",
-      "10 ASPMX3.GOOGLEMAIL.COM.",
+      "5 ALT1.ASPMX.L.GOOGLE.COM.",
       "1 ASPMX.L.GOOGLE.COM.",
-      "5 ALT2.ASPMX.L.GOOGLE.COM."
+      "5 ALT2.ASPMX.L.GOOGLE.COM.",
+      "10 ASPMX3.GOOGLEMAIL.COM."
     ],
     "txt": [
       "google-site-verification=SrtYpJGxZzMTcczZG44XtLVK-sEPit9bputDjWc0lF4",
@@ -316,5 +316,5 @@
   "subdomain_count": 42,
   "display_name": "fmfalgun",
   "display_loc": "Chennai, India",
-  "last_refreshed": "2026-07-20T05:32:37Z"
+  "last_refreshed": "2026-07-21T05:13:46Z"
 }
