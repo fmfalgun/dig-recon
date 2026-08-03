@@ -1,6 +1,6 @@
 {
   "domain": "nmap.org",
-  "queried_at": "2026-08-02T05:19:45.561244+00:00",
+  "queried_at": "2026-08-03T05:34:04.491738+00:00",
   "cached": false,
   "records": {
     "a": [
@@ -10,11 +10,11 @@
       "2600:3c01:e000:3e6::6d4e:7061"
     ],
     "ns": [
-      "ns2.linode.com",
-      "ns5.linode.com",
-      "ns4.linode.com",
       "ns1.linode.com",
-      "ns3.linode.com"
+      "ns2.linode.com",
+      "ns3.linode.com",
+      "ns4.linode.com",
+      "ns5.linode.com"
     ],
     "mx": [
       "10 ASPMX2.GOOGLEMAIL.COM.",
@@ -316,5 +316,5 @@
   "subdomain_count": 42,
   "display_name": "fmfalgun",
   "display_loc": "Chennai, India",
-  "last_refreshed": "2026-08-02T05:19:50Z"
+  "last_refreshed": "2026-08-03T05:34:13Z"
 }
